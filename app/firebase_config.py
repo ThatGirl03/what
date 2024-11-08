@@ -1,14 +1,16 @@
 # website/firebase_config.py
 import os
 import json
+import base64
 import firebase_admin
 from firebase_admin import credentials, firestore
 
 # Get the Firebase credentials from environment variables
-firebase_credentials_json = os.getenv("FIREBASE_CREDENTIALS")
+firebase_credentials = os.getenv("FIREBASE_CREDENTIALS")
 
-if firebase_credentials_json:
-    creds = json.loads(firebase_credentials_json)
+if firebase_credentials:
+    decoded_json = base64.b64decode(firebase_credentials.encode("ascii")).decode("ascii")
+    creds = json.loads(decoded_json)
     cred = credentials.Certificate(creds)
     firebase_admin.initialize_app(cred)
 

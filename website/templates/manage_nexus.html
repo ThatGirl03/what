@@ -1,0 +1,67 @@
+{% extends "admin_base.html" %}
+{% block title %}Manage Nexus{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/entrepreneurship.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_code.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+<div class="chat-container">
+    <h2>Nexus Chat Room</h2>
+    <div id="messages" class="messages"></div>
+    
+</div>
+
+
+<script>
+    function fetchMessages() {
+        fetch('/get_messages')
+            .then(response => response.json())
+            .then(messages => {
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = '';
+                messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = message.user_type === 'admin' ? 'message admin' : 'message learner';
+                    messageDiv.innerHTML = `
+                        <strong>${message.sender}:</strong> ${message.content} 
+                        <span>${message.timestamp}</span>
+                        ${message.user_type !== 'admin' ? `<input type="checkbox" ${message.seen ? 'checked' : ''} onclick="markAsSeen('${message.id}')" /> Seen` : ''}
+                    `;
+                    messagesContainer.appendChild(messageDiv);
+                });
+            });
+    }
+    
+    function markAsSeen(messageId) {
+        fetch('/mark_message_seen', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message_id: messageId })
+        }).then(response => {
+            if (response.ok) {
+                fetchMessages();
+            }
+        });
+    }
+
+    setInterval(fetchMessages, 5000);
+    
+    function sendMessage() {
+        const content = document.getElementById('messageInput').value;
+        fetch('/send_message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content })
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('messageInput').value = '';
+                fetchMessages();
+            }
+        });
+    }
+
+    fetchMessages();
+</script>
+
+{% endblock %}

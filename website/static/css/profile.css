@@ -1,0 +1,76 @@
+/* In your profile.css or relevant CSS file */
+.profile-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 10px; /* Add space between the icon and text */
+    border-radius: 50%; /* Make the icon circular */
+}
+
+
+
+.setting-item {
+    margin-bottom: 15px;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dropdown-content label, .dropdown label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+}
+
+
+
+/* Default Theme */
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+}
+
+/* Dark Theme */
+.dark-theme {
+    --background-color: #333;
+    --text-color: #fff;
+}
+
+/* Light Theme */
+.light-theme {
+    --background-color: #f9f9f9;
+    --text-color: #333;
+}
+
+/* Mookai Theme */
+.mookai-theme {
+    --background-color: #4b0082;
+    --text-color: #fff;
+}
+
+/* Red Theme */
+.red-theme {
+    --background-color: #ff0000;
+    --text-color: #fff;
+}
+
+/* Apply colors */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}

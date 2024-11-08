@@ -1,0 +1,44 @@
+/* styles.css */
+
+/* Style for the post container */
+.post {
+    margin: 20px; /* Adjust margin as needed */
+    padding: 15px; /* Add padding around the post */
+    border: 1px solid #ccc; /* Light border for the post */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Style for the image */
+.post img {
+    max-width: 150px; /* Limit image width */
+    border-radius: 4px; /* Optional: rounded corners for the image */
+}
+
+/* Style for the buttons */
+.btn {
+    padding: 10px 15px; /* Button padding */
+    margin-top: 10px; /* Space above buttons */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Bootstrap warning color */
+    color: white; /* Text color */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white; /* Text color */
+}
+
+.btn:hover {
+    opacity: 0.9; /* Slight transparency on hover */
+}
+
+/* Style for the PDF download link */
+.post p {
+    margin: 10px 0; /* Space above and below paragraph */
+}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Explore Our Arduino Models{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cables.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sectorA.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/arduino_models.css') }}" />
+
+<header>
+    <h1>Explore Our Arduino Models</h1>
+</header>
+
+<!-- 2x2 Grid Layout for Arduino Models -->
+<div class="main-content grid-layout">
+    <div class="model">
+        <img src="{{ url_for('static', filename='images/ardUNO.png') }}" alt="Arduino Uno">
+        <h2>Arduino Uno</h2>
+        <p>The Arduino Uno is one of the most popular and widely used microcontroller boards. It features an ATmega328P processor 
+           and is known for its ease of use, making it ideal for beginners and prototyping.</p>
+    </div>
+
+    <div class="model">
+        <img src="{{ url_for('static', filename='images/ardMEGA.png') }}" alt="Arduino Mega">
+        <h2>Arduino Mega</h2>
+        <p>The Arduino Mega offers a larger number of input/output pins and more memory than the Uno. It's suited for complex 
+           projects that require more resources or multiple devices.</p>
+    </div>
+    
+    <div class="model">
+        <img src="{{ url_for('static', filename='images/ArdNANO.png') }}" alt="Arduino Nano">
+        <h2>Arduino Nano</h2>
+        <p>The Arduino Nano is a compact version of the Uno, with similar functionality but in a smaller form factor. It's ideal 
+           for projects with space constraints or for use on breadboards.</p>
+    </div>
+
+    <div class="model">
+        <img src="{{ url_for('static', filename='images/ardDUE.png') }}" alt="Arduino Due">
+        <h2>Arduino Due</h2>
+        <p>The Arduino Due is based on a 32-bit ARM Cortex-M3 processor, providing higher performance and more processing power. 
+           It’s suitable for advanced applications and projects that require more computational resources.</p>
+    </div>
+
+    <div class="model">
+        <img src="{{ url_for('static', filename='images/ardLILYPAD.png') }}" alt="Arduino LilyPad">
+        <h2>Arduino LilyPad</h2>
+        <p>The Arduino LilyPad is designed for wearable electronics and e-textiles. It features a flexible PCB that can be sewn 
+           into fabric, making it ideal for creating smart clothing and accessories.</p>
+    </div>
+</div>
+
+<div class="learn-more-container">
+    <section class="learn-more">
+        <h2>Learn More</h2>
+        <p>Understanding different Arduino models is essential for any electronics or computing project. Explore the world of Arduino and enhance your project experience.</p>
+        <ul>
+            <li><a href="https://www.arduino.cc/">Arduino Official Site</a></li>
+            <li><a href="https://www.instructables.com/">Instructables - Arduino Projects</a></li>
+            <li><a href="https://www.amazon.com/">Amazon - Arduino Products</a></li>
+        </ul>
+    </section>
+</div>
+
+<div class="navigation-buttons">
+    <a href="base.html">Done</a>
+</div>
+
+{% endblock %}

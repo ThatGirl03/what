@@ -1,0 +1,80 @@
+.full-screen-image {
+    background-image: url('/static/images/adminw.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Adding a darker overlay */
+.full-screen-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+    z-index: -1;
+}
+
+.content-overlay {
+    position: relative;
+    z-index: 1; /* Ensures it is in front of the background image */
+    text-align: center;
+    padding-top: 15%; /* Adjusted for better positioning */
+}
+
+.welcome-message {
+    font-size: 2.5em; /* Increased size for better visibility */
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 1.10); /* Darker shadow for contrast */
+}
+
+.tagline {
+    font-size: 1.5em; /* Increased size for better visibility */
+    font-weight: normal; /* Make tagline bold */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Darker shadow for contrast */
+    margin-top: 10px;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px; /* Space between title/tagline and actions */
+}
+
+.action-item {
+    text-align: center;
+    font-weight: bold;
+    margin: 0 20px; /* Space between icons */
+    color: rgb(39, 168, 140); /* Color for the text and icons */
+}
+
+.action-item i {
+    font-size: 3em; /* Size of the icons */
+    display: block; /* Make icon block level for centering */
+    margin-bottom: 60px; /* Space between icon and text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Optional shadow for icons */
+}
+
+.action-item p {
+    font-size: 1.2em; /* Size of the text */
+    margin: 0; /* Remove default margins */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Optional shadow for text */
+}
+
+.action-item img {
+    width: 70px; /* Adjust width for smaller images */
+    height: 70px; /* Adjust height for smaller images */
+    display: block; /* Make image block level for centering */
+    margin-bottom: 10px; /* Space between image and text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Optional shadow for images */
+}

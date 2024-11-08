@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Nexus{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sectorA.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+<div class="chat-container">
+    <h2>Nexus Chat Room</h2>
+    <div id="messages" class="messages"></div>
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    function fetchMessages() {
+        fetch('/get_messages')
+            .then(response => response.json())
+            .then(messages => {
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = '';
+                messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = message.user_type === 'admin' ? 'message admin' : 'message learner';
+                    messageDiv.innerHTML = `
+                        <strong>${message.sender}:</strong> ${message.content} 
+                        <span>${message.timestamp}</span>
+                        ${message.seen && message.user_type !== 'admin' ? '<i class="fas fa-check-double seen-status" style="color: red;"></i>' : ''}
+                    `;
+                    messagesContainer.appendChild(messageDiv);
+                });
+            });
+    }
+
+    setInterval(fetchMessages, 5000);
+
+    function sendMessage() {
+        const content = document.getElementById('messageInput').value;
+        fetch('/send_message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content })
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('messageInput').value = '';
+                fetchMessages();
+            }
+        });
+    }
+
+    fetchMessages();
+</script>
+{% endblock %}

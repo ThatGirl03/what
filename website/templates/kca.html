@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}K.C.A{% endblock %}
+
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/software.css') }}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/kca.css') }}"
+/>
+
+<header>
+    <h1>Explore Our Project Components</h1>
+</header>
+
+<!-- Larger Combined Project Container -->
+<div class="combined-project">
+    <img src="{{ url_for('static', filename='images/main.jpeg') }}" alt="Combined Project Overview">
+    <h2>The Complete Project Setup</h2>
+    <p>Our project combines the power of the Raspberry Pi 3, MicroSD cards, power bank, solar panel, Sunfounder screen, and other components to create a portable, sustainable, and scalable system. This setup can function independently without a constant internet connection and allows users to interact with the project via a local network. The system is ideal for remote learning, coding experiments, or even mobile computing projects, offering flexibility and educational opportunities for all users. Whether you're powering the Raspberry Pi via solar energy or displaying the interface on the Sunfounder screen, this setup is designed to be efficient, versatile, and adaptable.</p>
+</div>
+
+<!-- 2x2 Grid Layout for Other Components -->
+<div class="main-content grid-layout">
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/Rasp.jpg') }}" alt="Raspberry Pi 3">
+        <h2>Raspberry Pi 3</h2>
+        <p>The Raspberry Pi 3 is the heart of our project. This compact, affordable computer is perfect for coding, DIY projects, and learning about computing. Its versatility allows it to be used as a media center, retro gaming console, or even a small server. The Raspberry Pi is scalable, supporting various SD card sizes depending on your storage needs.</p>
+    </div>
+    
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/sd.jpg') }}" alt="MicroSD Card">
+        <h2>MicroSD Card</h2>
+        <p>While we use a 32GB MicroSD card in this setup, the Raspberry Pi is compatible with other SD card sizes. Choose a size that suits your project's storage needs. The MicroSD card stores the operating system and all your project files, ensuring smooth operation of your applications and data.</p>
+    </div>
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/hdmi.jpg') }}" alt="HDMI Cable">
+        <h2>HDMI Cable</h2>
+        <p>The HDMI cable connects the Raspberry Pi to a monitor or TV, allowing you to view and interact with your projects. It’s essential for setting up your Raspberry Pi and for visual output.</p>
+    </div>
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/powerC.jpg') }}" alt="Power Cables">
+        <h2>Power Cables</h2>
+        <p>Reliable power cables ensure your Raspberry Pi stays powered and operational. A consistent power supply is crucial for maintaining performance and stability.</p>
+    </div>
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/powerb.jpg') }}" alt="Power Bank">
+        <h2>Power Bank</h2>
+        <p>A power bank provides portable power for your Raspberry Pi and other devices. Choose a high-capacity power bank with fast-charging capabilities to keep everything running smoothly.</p>
+    </div>
+
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/solar.png') }}" alt="Solar Panel">
+        <h2>Solar Panel</h2>
+        <p>The solar panel harnesses the power of the sun to provide energy for your Raspberry Pi and other components. It’s a sustainable and eco-friendly way to keep your project powered.</p>
+    </div>
+</div>
+
+<div class="product">
+    <img src="{{ url_for('static', filename='images/sunfounder.jpg') }}" alt="Sunfounder Screen">
+    <h2>Sunfounder Screen</h2>
+    <p>The Sunfounder screen displays your website and project interface. It’s essential for monitoring and interacting with your project directly.</p>
+</div>
+
+<div class="learn-more-container">
+<section class="learn-more">
+    <h2>Learn More</h2>
+    <p>The Raspberry Pi and its components offer endless possibilities for learning and experimentation. By using these microcontrollers, you can explore coding, hardware interaction, and innovative project ideas. The benefits of incorporating these technologies include enhanced problem-solving skills, creative project development, and a greater understanding of modern tech applications.</p>
+    <ul>
+        <li><a href="https://www.raspberrypi.org/">Official Raspberry Pi Website</a></li>
+        <li><a href="https://www.instructables.com/">Instructables - DIY Projects</a></li>
+        <li><a href="https://www.adafruit.com/">Adafruit - Electronics and DIY</a></li>
+        <li><a href="https://www.sparkfun.com/">SparkFun - Electronics Components</a></li>
+    </ul>
+</section>
+</div>
+
+{% endblock %}

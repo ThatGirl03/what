@@ -1,0 +1,38 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin Home{% endblock %}
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin_home.css') }}"
+/>
+
+<div class="full-screen-image">
+  </div>
+   
+  <div class="content-overlay">
+    <h1 class="welcome-message">Welcome to Easy Link Educators</h1>
+    <p class="tagline">The Best Choice.</p>
+  </div>
+
+  <div class="actions-container">
+    <div class="action-item">
+        <img src="{{ url_for('static', filename='images/OIP (6).jpg') }}" alt="Post Content" />
+        <p>Post Content</p>
+    </div>
+    <div class="action-item">
+        <img src="{{ url_for('static', filename='images/comments.jpg') }}" alt="Receive Comments" />
+        <p>Receive Comments</p>
+    </div>
+    <div class="action-item">
+        <img src="{{ url_for('static', filename='images/content-writing.png') }}" alt="Edit Content" />
+        <p>Edit Content</p>
+    </div>
+    <div class="action-item">
+        <img src="{{ url_for('static', filename='images/web-design.png') }}" alt="Delete Content" />
+        <p>Delete Content</p>
+    </div>
+</div>
+</div>
+
+{% endblock %}

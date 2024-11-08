@@ -1,0 +1,38 @@
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.messages {
+    border: 1px solid #268558;
+    padding: 10px;
+    height: 400px;
+    overflow-y: auto;
+    background-color: #3cccb9;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.message.admin {
+    background-color: #0f7583; /* Light teal for admin */
+    text-align: left;
+}
+
+.message.learner {
+    background-color: #6d9e9e; /* Light green for learner */
+    text-align: right;
+}
+
+#messageInput {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 15px;
+}

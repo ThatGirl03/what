@@ -1,0 +1,55 @@
+/* Styling for the uploaded posts */
+.post-image {
+    max-width: 200px;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.table-container {
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* White background for the table */
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table th {
+    background-color: #009688; /* Teal blue header */
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table td {
+    color: #333333; /* Dark text for table cells */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for alternating rows */
+}
+
+.table tr:hover {
+    background-color: #e0f7fa; /* Light teal on hover */
+}
+
+.status-active {
+    color: #009688;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #b0bec5; /* Light grey for inactive status */
+    font-weight: bold;
+}

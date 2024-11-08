@@ -1,0 +1,43 @@
+{% extends "admin_base.html" %}
+{% block title %}Manage Learners{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_learners.css') }}">
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/SectorA.css') }}"
+/>
+<h3>Learners</h3>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Last Used</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.last_used }}</td>
+                <td>
+                    {% if user.is_active %}
+                        <span class="status-active">Active</span>
+                    {% else %}
+                        <span class="status-inactive">Inactive</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

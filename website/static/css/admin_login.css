@@ -1,0 +1,73 @@
+/* Ensure the entire form page is styled properly */
+body {
+    background-color: #f7f7f7; /* Light background color for the whole page */
+    font-family: Arial, sans-serif; /* Clean and readable font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Container for centering and styling the form */
+.form-container {
+    background-color: #fff; /* White background for the form */
+    border-radius: 8px; /* Rounded corners for the form */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the form */
+    padding: 20px; /* Padding inside the form */
+    max-width: 400px; /* Maximum width of the form */
+    width: 100%;
+    margin: 20px auto; /* Center the form horizontally and add margin */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+    display: flex;
+    flex-direction: column; /* Stacks form elements vertically */
+    align-items: center; /* Centers the form content horizontally */
+}
+
+/* Style for form title */
+.form-title {
+    text-align: center; /* Center-aligns the title */
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 24px; /* Larger font size for the title */
+    color: #333; /* Dark text color */
+    font-weight: bold; /* Bold title for emphasis */
+}
+
+/* Styles for form groups */
+.form-group {
+    width: 100%; /* Full width of the container */
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+.form-group label {
+    display: block; /* Makes label a block element for better alignment */
+    margin-bottom: 5px; /* Space below the label */
+    font-weight: bold; /* Makes label text bold */
+    color: #555; /* Slightly lighter text color for labels */
+}
+
+.form-group input {
+    width: 100%; /* Makes input fields full width of the container */
+    padding: 10px; /* Padding inside input fields */
+    border: 1px solid #ddd; /* Light border for input fields */
+    border-radius: 4px; /* Rounded corners for input fields */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+}
+
+.submit-button {
+    background-color: #007bff; /* Blue background for the button */
+    color: white; /* White text color for the button */
+    border: none; /* Removes default border */
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 4px; /* Rounded corners for the button */
+    font-size: 16px; /* Larger font size for readability */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Button takes full width */
+    margin-top: 10px; /* Adds space above the button */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.submit-button:focus {
+    outline: none; /* Removes default focus outline */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+}

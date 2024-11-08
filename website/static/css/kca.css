@@ -1,0 +1,133 @@
+/* Styling for the larger combined project section */
+.combined-project {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.combined-project img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.combined-project h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.combined-project p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Grid layout for the components, except the last one */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.product {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Full-width product at the bottom */
+.full-width {
+    grid-column: 1 / -1;
+    padding: 30px;
+    background-color: #e0f7fa;
+}
+
+.full-width img {
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+.learn-more-container {
+    background-color: #f0f8ff; /* Light blue background */
+    border: 1px solid #ddd; /* Soft gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 30px; /* Padding inside the container */
+    margin-top: 40px; /* Adds space above the section */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center the content */
+}
+
+.learn-more h2 {
+    font-size: 26px;
+    color: #2c3e50; /* Dark blue for the header */
+    margin-bottom: 20px;
+}
+
+.learn-more p {
+    font-size: 18px;
+    color: #34495e; /* Slightly darker text */
+    margin-bottom: 20px;
+}
+
+.learn-more ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+}
+
+.learn-more ul li {
+    display: inline-block; /* Make list items inline */
+    margin: 10px 20px; /* Add spacing between items */
+}
+
+.learn-more ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #2980b9; /* Light blue for links */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.learn-more ul li a:hover {
+    color: #1abc9c; /* Change link color on hover */
+}
+
+header {
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Add space below the header */
+}
+
+header h1 {
+    font-size: 36px; /* Adjust font size */
+    color: #2980b9; /* Blue color for the heading */
+    margin-bottom: 10px; /* Space between the heading and the line */
+    font-weight: bold;
+}
+
+header::after {
+    content: '';
+    display: block;
+    width: 100px; /* Line width */
+    height: 3px; /* Line height */
+    background-color: #2980b9; /* Line color (same as heading) */
+    margin: 0 auto; /* Center the line */
+    margin-top: 10px;
+}

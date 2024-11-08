@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<section class="about-hero">
+    <div class="about-hero-text">
+        <h1>About Easy Link</h1>
+        <p>Online, Offline</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-content">
+        <h2 class="text-center"><i class="bi bi-people-fill"></i> Our Mission</h2>
+        <p>
+            At Easy Link, we believe in the power of collective action. Our platform is designed to bring together individuals, organizations, and companies in the recycling industry, fostering a community where innovation and sustainability thrive. We aim to create a space where you can connect, collaborate, and contribute to a greener future.
+        </p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-content">
+        <h2 class="text-center"><i class="bi bi-lightbulb-fill"></i> What We Do</h2>
+        <p>
+            Easy Link is more than just a platform. We are a hub of knowledge, resources, and opportunities for anyone interested in recycling and sustainability. Whether you’re an individual looking to learn more about reducing waste, a company seeking partnerships, or an organization advocating for environmental change, TripleRnexus is here to support you. Our educational resources, networking opportunities, and industry insights help you stay informed and connected in this rapidly evolving field.
+        </p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-content">
+        <h2 class="text-center"><i class="bi bi-globe"></i> Why We Exist</h2>
+        <p>
+            The world is facing an environmental crisis, and waste management is at the heart of it. We exist to make a difference by empowering people with the tools and knowledge they need to reduce, reuse, and recycle effectively. By connecting like-minded individuals and organizations, we are creating a network that is dedicated to making the world a cleaner, more sustainable place. Together, we can transform the way we think about waste and its impact on the planet.
+        </p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="about-content">
+        <h2 class="text-center"><i class="bi bi-arrow-right-circle-fill"></i> Join Our Nexus</h2>
+        <p>
+            At Easy Link, we invite you to become part of a movement. Whether you are a seasoned expert in the recycling industry or just starting your journey toward sustainability, our platform offers you the opportunity to connect with others, share your ideas, and grow your impact. Join us today and be a part of the change. Together, we can build a future where every action counts towards a healthier planet.
+        </p>
+    </div>
+</section>
+
+<section class="partnership-section">
+    <div class="partnership-content text-center">
+        <h2><i class="bi bi-handshake-fill"></i> Connect with Us</h2>
+        <p>
+            We are always looking for passionate individuals and forward-thinking companies to collaborate with. Let’s work together to bring innovative recycling solutions to life. If you're interested in partnering with us or learning more about what we do, don’t hesitate to reach out. Together, we can create a cleaner, more sustainable world.
+        </p>
+        <a href="{{ url_for('views.nexus') }}" class="btn btn-success contact-button">Get in Touch</a>
+    </div>
+</section>
+
+{% endblock %}
+

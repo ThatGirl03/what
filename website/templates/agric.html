@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Biz{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sectorA.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}" />
+
+<div class="title-container">
+    <h2 class="page-title">Entrepreneurship</h2>
+</div>
+
+<div class="video-grid-container">
+    <!-- Video 1 -->
+    <div class="video-item">
+        <video width="100%" controls>
+            <source src="{{ url_for('static', filename='videos/agric.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Farming!</p>
+    </div>
+
+  
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+/* Style for the title container to center align */
+.title-container {
+    text-align: center; /* Centers the title horizontally */
+    margin-bottom: 20px; /* Adds space below the title */
+}
+
+/* Style for the title itself */
+.page-title {
+    font-size: 2.5rem; /* Larger font size for prominence */
+    font-weight: bold; /* Makes the title bold */
+    color: #007bff; /* Bright orange color for the title */
+    text-transform: uppercase; /* Capitalizes all letters */
+    margin: 0; /* Removes default margin */
+    padding: 10px 0; /* Adds padding above and below the title */
+    border-bottom: 2px solid #007bff; /* Adds a bottom border for emphasis */
+}
+
+/* Ensures container takes up full height */
+body {
+   
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the cybersecurity posts container */
+#data-posts {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap to the next line when they reach the screen edge */
+    gap: 15px; /* Adds space between the items */
+    justify-content: flex-start; /* Aligns items to the left */
+    padding: 20px; /* Optional: Adds padding around the container */
+}
+
+/* Style for each cybersecurity post */
+.data-post {
+    flex: 1 1 120px; /* Each post will have a base size of 120px and can shrink/grow */
+    max-width: 200px; /* Restricts the maximum width to 200px */
+    margin-bottom: 15px; /* Adds space below each row */
+    box-sizing: border-box; /* Ensures padding and borders are included in the width/height */
+    padding: 10px; /* Adds padding around each post for better spacing */
+    background-color: white; /* Background color for posts */
+    border-radius: 8px; /* Optional: Rounds the corners of the posts */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect to the posts */
+    transition: transform 0.2s; /* Smooth transition effect */
+}
+
+/* Hover effect for cybersecurity posts */
+.data-post:hover {
+    transform: scale(1.05); /* Slightly increases the size on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Increases shadow on hover */
+}
+
+/* Style for the images within the cybersecurity posts */
+.data-post img {
+    max-width: 100%; /* Ensures the image takes up 100% of its container */
+    height: auto; /* Maintains the aspect ratio */
+    border: 1px solid #ddd; /* Optional: Adds a light border around the image */
+}

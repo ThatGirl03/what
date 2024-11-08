@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}robotics{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sectorA.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/video_grid.css') }}" />
+
+<div class="title-container">
+    <h2 class="page-title">Robotics and Coding</h2>
+</div>
+
+<div class="video-grid-container">
+    <!-- Video 1 -->
+    <div class="video-item">
+        <video width="100%" controls>
+            <source src="{{ url_for('static', filename='videos/code.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Coding is so cool!</p>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-item">
+        <video width="100%" controls>
+            <source src="{{ url_for('static', filename='videos/') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Advanced Topics in Software Engineering</p>
+    </div>
+
+    <!-- Add more video items as needed -->
+</div>
+
+{% endblock %}

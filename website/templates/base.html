@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/profile.css') }}"
+    />
+   
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/styles.css') }}"
+  />
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body class="{% if session.theme %}{{ session.theme }}-theme{% endif %}">
+
+  
+    <!-- Popup Modal -->
+    
+    <div class="popup" id="factPopup">
+      <div class="popup-content">
+          <span class="close">&times;</span>
+          <img id="factImage" src="" alt="Fact Image">
+          <div id="factDescription"></div>
+          <button id="okButton">OK</button>
+      </div>
+  </div>
+  
+ 
+    <nav class="navbar navbar-expand-lg navbar-teal-blue">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+        title="Toggle Navigation" 
+      >
+
+      
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Easy Link
+            </a>
+            <div class="dropdown-menu" aria-labelledby="homeDropdown">
+              <a class="dropdown-item" href="/">Home</a>
+              <a class="dropdown-item" href="/profile">Profile</a>
+              <a class="dropdown-item" href="/help">Help</a>
+            </div>
+          </div>
+          <span class="search-icon" id="searchToggle" title="Search">&#128269;</span>
+          
+         
+          {% if user.is_authenticated %}
+          
+          
+          {% else %}
+          {% endif %}
+        </div>
+        <div class="navbar-nav">
+        </div>
+          <div class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" id="home-main" href="/">Home</a>
+           
+            
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MySchool
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/sectorA">Sector A</a>
+                <a class="dropdown-item" href="/sectorB">Sector B</a>
+                <a class="dropdown-item" href="/sectorC">Sector C</a>
+                <a class="dropdown-item" href="/sectorD">Sector D</a>
+                <a class="dropdown-item" href="/sectorE">Sector E</a>
+                <a class="dropdown-item" href="/sectorF">Sector F</a>
+                <a class="dropdown-item" href="/sectorG">Sector G</a>
+              </div>
+            </div>
+            <a class="nav-item nav-link" id="nex" href="/nex">Nexus</a>
+
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Exams
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/questions">Question Papers</a>
+                <a class="dropdown-item" href="/memo">Memo</a>
+              </div>
+            </div>
+
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Podcast
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/engineer">Software Engineering</a>
+                <a class="dropdown-item" href="/robotics">Robotics & Coding</a>
+                <a class="dropdown-item" href="/physics">Physical Sciences</a>
+                <a class="dropdown-item" href="/iot">Internet of Things</a>
+                <a class="dropdown-item" href="/math">Mathematics</a>
+                <a class="dropdown-item" href="/accounting">Accounting</a>
+              </div>
+            </div>
+
+            
+             
+             
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="computersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Reels
+              </a>
+              <div class="dropdown-menu" aria-labelledby="computersDropdown">
+                <a class="dropdown-item" href="/entrepreneurship">Entrepreneurship</a>
+                <a class="dropdown-item" href="/agric">Agriculture</a>
+                <a class="dropdown-item" href="/networks">Networks</a>
+                <a class="dropdown-item" href="/numbers">Numbers</a>
+                <a class="dropdown-item" href="/science">Science</a>
+                <a class="dropdown-item" href="/code">Code</a>
+                <a class="dropdown-item" href="/ict">ICT</a>
+                <a class="dropdown-item" href="/iot">IoT</a>
+              </div>
+          </div>
+          
+          <a class="nav-item nav-link" id="kca" href="/kca">K.C.A</a>
+            
+            <a class="nav-item nav-link" id="about" href="/about">About Us</a>
+            
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="logout" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Pick Profile">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="logout">
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('auth.logout') }}" aria-label="Individual Profile">
+                    <i class="fa fa-user" aria-hidden="true"></i> <!-- Individual icon -->
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('admin_auth.adm_logout') }}" aria-label="Admin Profile">
+                    <i class="fa fa-user-shield" aria-hidden="true"></i> <!-- Admin icon -->
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            
+            
+
+          {% else %}
+          <a class="nav-item nav-link" id="home" href="/">Home</a>
+          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+          <a class="nav-item nav-link" id="login" href="/login">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+     {% for category, message in messages %}
+     {% if category == 'error' %}
+     <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert"  aria-label="Close" title="Close alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+
+     {% else %}
+
+     <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert"  aria-label="Close" title="Close alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+     {% endif %}
+     {% endfor %}
+    {% endif %} 
+    {% endwith %}
+
+    <div class="container content">
+      {% block content %}
+       {% endblock %}
+    </div>
+
+    <footer class="footer-teal-blue">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; 2024 Easy Link. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-right footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/about">About Us</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script>
+      const facts = [
+    {
+        image: 'static/images/old.jpg',
+        description: 'Fact: Jeanne Calment lived to 122, the longest known human lifespan.'
+    },
+    {
+        image: 'static/images/le.jpg',
+        description: 'Fact: The human brain generates about 20 watts of power while awake.'
+    },
+    {
+        image: 'static/images/left.jpg',
+        description: 'Fact: About 90% of people are right-handed; lefties often excel in arts.'
+    }
+];
+
+function openPopup() {
+    const randomIndex = Math.floor(Math.random() * facts.length);
+    const fact = facts[randomIndex];
+
+    document.getElementById('factImage').src = fact.image;
+    document.getElementById('factDescription').innerText = fact.description;
+
+    document.getElementById('factPopup').style.display = 'block';
+}
+
+function shouldShowPopup() {
+    const lastShown = localStorage.getItem('lastPopupTime');
+    const currentTime = new Date().getTime();
+    
+    // Check if lastShown exists and if it was shown less than 5 minutes ago (300000 milliseconds)
+    if (lastShown && (currentTime - lastShown < 300000)) {
+        return false;
+    }
+
+    // Update last shown time
+    localStorage.setItem('lastPopupTime', currentTime);
+    return true;
+}
+
+window.onload = function() {
+    // Show popup if allowed by the 5-minute rule
+    if (shouldShowPopup()) {
+        openPopup();
+    }
+
+    // Show popup every 5 minutes
+    setInterval(() => {
+        if (shouldShowPopup()) {
+            openPopup();
+        }
+    }, 300000); // 5 minutes
+
+    // Close popup on 'OK' button or 'X' close icon click
+    document.getElementById('okButton').onclick = function() {
+        document.getElementById('factPopup').style.display = 'none';
+    };
+    document.querySelector('.close').onclick = function() {
+        document.getElementById('factPopup').style.display = 'none';
+    };
+};
+
+      
+      </script>
+      
+
+
+  </body>
+</html>

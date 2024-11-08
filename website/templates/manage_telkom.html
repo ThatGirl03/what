@@ -1,0 +1,43 @@
+{% extends "admin_base.html" %} {% block title %}Manage Telkom{% endblock %} 
+
+{% block content %}
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/sectorA.css') }}"
+/>
+<link rel="stylesheet" href="{{ url_for('static', filename='manage_cisco.css') }}">
+
+
+<form method="POST" enctype="multipart/form-data"></form>
+    <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+    </div>
+    <div class="form-group">
+        <label for="pdf">Link to PDF</label>
+        <input type="url" class="form-control" id="pdf" name="pdf" placeholder="Enter PDF link" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+<!-- Display Uploaded Posts -->
+<h3>Uploaded Posts</h3>
+<div id="posts">
+    {% for post in posts %}
+    <div class="post">
+        <img src="{{ url_for('static', filename='/uploads/' + post.image) }}" alt="Software Image" >
+        <p>
+            <a href="{{ post.pdf }}" download>Download PDF</a>
+        </p>
+           <!-- Edit Button -->
+           <a href="{{ url_for('views.edit_post', post_id=post.id) }}" class="btn btn-warning">Edit</a>
+           <!-- Delete Button -->
+           <form action="{{ url_for('views.delete_post', post_id=post.id) }}" method="POST" >
+               <button type="submit" class="btn btn-danger">Remove</button>
+           </form>
+       </div>
+       <hr/>
+       {% endfor %}
+   </div>
+{% endblock %}

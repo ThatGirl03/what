@@ -1,0 +1,303 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    flex: 1; /* This will make sure the content area takes up the remaining space */
+  }
+  .dropdown-toggle::after {
+    display: none; /* Hide the default dropdown arrow */
+  }
+  .footer-teal-blue {
+      background-color: #20b2aa; /* Teal-blue color for footer */
+      color: #ffffff; /* White text color */
+      padding: 20px 0; /* Padding for footer */
+    }
+  .footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar-teal-blue {
+      background-color: #20b2aa;
+      padding: 1rem 1rem; /* the padding to increase the height */
+      margin-top: auto; /* Push footer to the bottom */
+    }
+    
+    .navbar-nav .nav-link {
+      padding-top: 1rem; /*top padding  */
+      padding-bottom: 1rem; /* bottom padding  */
+    }
+    
+    
+  .navbar-teal-blue .nav-link {
+      color: #ffffff; /* White text color for navbar links */
+    }
+    
+    .navbar-teal-blue .dropdown-menu {
+      background-color: #20b2aa; /* Matching dropdown background color */
+    }
+    
+    .navbar-teal-blue .dropdown-item {
+      color: #ffffff; /* White text color for dropdown items */
+    }
+    
+    .navbar-teal-blue .dropdown-item:hover {
+      background-color: #1e9a8c; 
+    }
+  
+    /* Base styles for navbar links */
+  .navbar-teal-blue .nav-link {
+      position: relative; 
+      overflow: hidden; 
+      padding-bottom: 5px; 
+    }
+    
+    /* Create the moving line effect */
+    .navbar-teal-blue .nav-link::after {
+      content: ""; 
+      position: absolute;
+      bottom: 2px;
+      left: -100%; 
+      width: 100%;
+      height: 3px; 
+      background-color: #ffffff; 
+      transition: left 0.4s ease-in-out; 
+    }
+    
+   
+    .navbar-teal-blue .nav-link:hover::after {
+      left: 0; 
+    }
+    
+    /* Specific styles for the logout link */
+  .navbar-teal-blue #logout {
+      text-decoration: none; 
+    }
+    
+    /* Remove the line effect for logout link */
+    .navbar-teal-blue #logout::after {
+      display: none; 
+    }
+    
+    /* Style for the Font Awesome icon */
+    .navbar-teal-blue #logout i {
+      font-size: 16px; 
+      color: #ffffff; 
+    }
+  
+    .navbar-toggler-icon {
+      background-image: none; /* Remove default background image */
+      position: relative; /* Position the lines */
+  }
+  
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 30px; /* Width of the lines */
+      height: 3px; /* Thickness of the lines */
+      background-color: white; /* Color of the lines */
+      transition: all 0.3s ease;
+  }
+  
+  .navbar-toggler-icon::before {
+      top: 8px; /* Space from the top line */
+  }
+  
+  .navbar-toggler-icon::after {
+      top: 16px; /* Space from the bottom line */
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu,
+  .dropdown-menu:hover {
+      display: block;
+  }
+  .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+  }
+  /* Ensure the dropdown menu is aligned with the dropdown toggle */
+  .nav-item.dropdown {
+      position: relative;
+  }
+  
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin: 0 15px;
+  }
+  
+  .search-container {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 60px; /* Adjust based on your navbar height */
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1050; /* Ensure it is on top of other elements */
+    width: 500px; /* Adjust width as needed */
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Ensure background is visible */
+  }
+  
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .search-form input {
+    border: 2px solid #21c7b1;
+    border-radius: 4px 0 0 4px;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    background-color: #ffffff;
+  }
+  
+  .search-form button {
+    border: 2px solid #17b6a1;
+    border-radius: 0 4px 4px 0;
+    padding: 10px;
+    background-color: #1bc2b4;
+    color: rgb(52, 160, 154);
+    cursor: pointer;
+  }
+  
+  .search-form button:hover {
+    background-color: #ffffff;
+  }
+  
+  .close-search {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #082b09;
+  }
+  
+  .hidden {
+    display: none; /* Hide elements when search is open */
+  }
+  
+  .popup {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.popup-content {
+    background-color: white; 
+    margin: 15% auto; 
+    padding: 20px; 
+    border: 1px solid #888; 
+    width: 80%; 
+    text-align: center; 
+}
+
+#factImage {
+    max-width: 100%; 
+    height: auto; 
+}
+
+/* General popup styling */
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999; /* High z-index to appear in front */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+  overflow: auto;
+}
+
+.popup-content {
+  background-color: #c9a120;
+  margin: 10% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 400px; /* Fixed width for consistency */
+  max-width: 80%; /* Responsive */
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Styling the image */
+#factImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+#factImage:hover {
+  transform: scale(1.05);
+}
+
+/* Description styling */
+#factDescription {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #000;
+}
+
+/* OK Button */
+#okButton {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #070707;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#okButton:hover {
+  background-color: #238686;
+}

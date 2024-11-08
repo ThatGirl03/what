@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/sectorA.css') }}"
+/>
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/profile.css') }}"
+/>
+
+<div class="title-container">
+    <h2 class="page-title">
+        <img src="{{ url_for('static', filename='icons/profile-icon.jpg') }}" alt="Profile Icon" class="profile-icon">
+        Welcome, {{ current_user.firstname }} {{ current_user.lastname }}</h2>
+</div>
+
+<div class="user-details">
+    <h4>Personal Details</h4>
+    <p><strong>First Name:</strong> {{  current_user.firstname }}</p>
+    <p><strong>Last Name:</strong> {{ current_user.lastname }}</p>
+    <p><strong>Email:</strong> {{  current_user.email }}</p>
+    <!-- Add other fields as necessary -->
+</div>
+
+<div class="rewards-container">
+    <h5><a href="#" class="toggle-link" onclick="toggleDropdown('rewards-dropdown')">My Rewards</a></h5>
+    <ul id="rewards-dropdown" class="dropdown" >
+        <li>
+            <strong>Robotics Lesson:</strong> <span id="robotics-count">0</span> Collections
+        </li>
+        <li>
+            <strong>Coding Lesson:</strong> <span id="coding-count">0</span> Collections
+        </li>
+        <li>
+            <strong>Advanced Robotics:</strong> <span id="advanced-robotics-count">0</span> Collections
+        </li>
+        <li>
+            <strong>Web Development:</strong> <span id="web-dev-count">0</span> Collections
+        </li>
+    </ul>
+</div>
+
+<div class="settings-container">
+    <h5><a href="#" class="toggle-link" onclick="toggleDropdown('settings-dropdown')">Settings</a></h5>
+    <div id="settings-dropdown" class="dropdown" >
+        <!-- Learning Preferences -->
+        <div class="setting-item">
+            <label for="learning-preferences"><strong>Learning Preferences:</strong></label>
+            <div class="dropdown-content">
+                <div>
+                    <label for="robotics-toggle">Robotics Hardware</label>
+                    <input type="checkbox" id="robotics-toggle" checked title="end"/>
+                </div>
+                <div>
+                    <label for="coding-toggle">Coding</label>
+                    <input type="checkbox" id="coding-toggle" title="end"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Settings -->
+        <div class="setting-item">
+            <label for="language-settings"><strong>Language Settings:</strong></label>
+            <div class="dropdown">
+                <select id="language-dropdown" title="language">
+                    <option value="english" selected>English</option>
+                    <option value="isizulu">IsiZulu</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Theme Settings -->
+        <div class="setting-item">
+            <label for="theme-settings"><strong>Theme:</strong></label>
+            <div class="dropdown-content">
+                <div>
+                    <label for="dark-mode-toggle">Dark Mode</label>
+                    <input type="radio" name="theme" id="dark-mode-toggle" value="dark" onclick="changeTheme('dark')" />
+                </div>
+                <div>
+                    <label for="light-mode-toggle">Light Mode</label>
+                    <input type="radio" name="theme" id="light-mode-toggle" value="light" onclick="changeTheme('light')" />
+                </div>
+                <div>
+                    <label for="mookai-mode-toggle">Mookai</label>
+                    <input type="radio" name="theme" id="mookai-mode-toggle" value="mookai" onclick="changeTheme('mookai')" />
+                </div>
+                <div>
+                    <label for="red-mode-toggle">Red</label>
+                    <input type="radio" name="theme" id="red-mode-toggle" value="red" onclick="changeTheme('red')" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+
+function changeTheme(theme) {
+    // Update the body class based on the selected theme
+    document.body.classList.remove('dark-theme', 'light-theme', 'mookai-theme', 'red-theme');
+
+    switch (theme) {
+        case 'dark':
+            document.body.classList.add('dark-theme');
+            break;
+        case 'light':
+            document.body.classList.add('light-theme');
+            break;
+        case 'mookai':
+            document.body.classList.add('mookai-theme');
+            break;
+        case 'red':
+            document.body.classList.add('red-theme');
+            break;
+    }
+
+    // Store the selected theme in the session (using AJAX)
+    fetch('/set_theme', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ theme: theme })
+    });
+}
+</script>
+{% endblock %}

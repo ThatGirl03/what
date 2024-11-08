@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/home.css') }}"
+/>
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/about.css') }}"
+/>
+
+<section class="hero">
+  <div class="slider-container">
+    <div class="slides">
+      <!-- Hero Image as part of the slider -->
+      <div class="hero">
+        <div class="hero-image">
+          
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="circles-section"> 
+  <div class="hero-text">
+  <h1>Welcome to Easy Link</h1>
+  <p>Redefining Learning</p>
+</div>
+  <div class="circles-container">
+    <div class="circle">
+      <div class="circle-content front">EAT</div>
+      <div class="circle-content back">Everyday</div>
+    </div>
+    <div class="circle">
+      <div class="circle-content front">TALK</div>
+      <div class="circle-content back">We Learn</div>
+    </div>
+    <div class="circle">
+      <div class="circle-content front">LEARN</div>
+      <div class="circle-content back">Something</div>
+    </div>
+    <div class="circle">
+      <div class="circle-content front">APPLY</div>
+      <div class="circle-content back">New!</div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p> At Easy Link, we are dedicated to bridging the digital divide by providing offline access to educational content, specifically focusing on informal ICT education. Our mission is to empower communities in remote or underdeveloped areas by delivering essential learning resources without the need for an active internet connection. We achieve this through an innovative system built around Raspberry Pi, a microcontroller that acts as a local server, enabling offline access to e-books, courses, and educational materials.
+      
+     <p> Powered by a solar-charged power bank, our Raspberry Pi setup is particularly effective in regions with abundant sunlight, making it a sustainable and reliable solution for education in even the most isolated areas. We partner with organizations engaged with schools to deliver this system, ensuring wide distribution to learning institutions. </p>
+      
+     <p>  Our focus is on providing content that nurtures ICT skills, using free resources such as courses and textbooks from reputable organizations with a strong presence in the digital movement, like Microsoft. By offering this platform, we aim to equip learners with the digital skills necessary for the future, ensuring no one is left behind in the age of technology.</p>
+      
+     <p> At Easy Link, we believe in the transformative power of education and technology, and we're committed to empowering communities and fostering educational growth where it's needed most.</p>
+    <p>Our commitment extends beyond mere innovation. We work tirelessly to integrate sustainability into every aspect of our operations, ensuring that every step we take brings us closer to a greener and more connected world. Join us on our journey as we turn ideas into action, and transform our vision of a sustainable future into reality.</p>
+    <a href="{{ url_for('views.about') }}" class="learn-more-link">Learn More</a>
+  </div>
+</section>
+
+
+<script>
+  let currentSlide = 0;
+
+  function moveSlide(step) {
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+
+  // Optional: Automatically slide every 5 seconds
+  setInterval(() => moveSlide(1), 5000);
+
+
+
+</script>
+
+<div id="chatbot-container" class="chatbot-container">
+  <div class="chatbot-icon">
+    <img src="/static/images/bot.jpg" alt="Chat Icon" />
+  </div>
+  <div id="chatbot-expanded" class="chatbot-expanded">
+    <button class="close-chatbot">&times;</button> 
+    <iframe 
+    src="https://creator.voiceflow.com/prototype/66c5a888f9ca8d559e85ba72" 
+    frameborder="0" 
+    title="Voiceflow Prototype 66c5a888f9ca8d559e85ba72">
+</iframe>
+
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var chatbotIcon = document.querySelector('.chatbot-icon');
+    var chatbotExpanded = document.getElementById('chatbot-expanded');
+
+    chatbotIcon.addEventListener('click', function() {
+      // Toggle the display of the expanded view
+      if (chatbotExpanded.style.display === 'block') {
+        chatbotExpanded.style.display = 'none';
+      } else {
+        chatbotExpanded.style.display = 'block';
+      }
+    });
+
+    // Optional: Add functionality to close the chatbot
+    var closeChatbot = document.querySelector('.close-chatbot');
+    if (closeChatbot) {
+      closeChatbot.addEventListener('click', function() {
+        chatbotExpanded.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+
+
+{% endblock %}

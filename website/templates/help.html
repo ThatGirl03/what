@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}Help{% endblock %}
+
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/help.css') }}"
+/>
+
+<h2 align="center">Help and Support</h2>
+
+<section class="cards-container">
+    <div class="card" onclick="showDetails('update-details')">
+        <h4>How to Update Your Details</h4>
+        <a href="javascript:void(0);" class="more-btn">Read</a>
+    </div>
+
+    <div class="card" onclick="showDetails('delete-account')">
+        <h4>How to Delete Your Account</h4>
+        
+        <a href="javascript:void(0);" class="more-btn">Read</a>
+    </div>
+
+    <div class="card" onclick="showDetails('understanding-pages')">
+        <h4>Understanding the Pages on Recycle Nexus</h4>
+
+        <a href="javascript:void(0);" class="more-btn">Read</a>
+    </div>
+
+    <div class="card" onclick="showDetails('additional-support')">
+        <h4>Additional Support</h4>
+       
+        <a href="javascript:void(0);" class="more-btn">Read</a>
+    </div>
+</section>
+
+<section id="update-details" class="details-section">
+    <div class="details-content">
+        <span class="close-btn" onclick="hideDetails('update-details')">×</span>
+        <h4>How to Update Your Details</h4>
+        <p>To update your public profile, contact details, or bio on the Recycle Nexus platform, follow these steps:</p>
+        <ol>
+            <li>Log in to your account and navigate to the <strong>Nexus</strong> page.</li>
+            <li>Click on the <strong>"Edit Profile"</strong> button to access your profile settings.</li>
+            <li>Update your contact details, bio, and any other relevant information.</li>
+            <li>Upload or change your profile picture and any images related to the materials you work with.</li>
+            <li>Click <strong>"Save Changes"</strong> to update your information.</li>
+        </ol>
+    </div>
+</section>
+
+<section id="delete-account" class="details-section">
+    <div class="details-content">
+        <span class="close-btn" onclick="hideDetails('delete-account')">×</span>
+        <h4>How to Delete Your Account</h4>
+        <p>If you wish to delete your account from Recycle Nexus, follow these steps:</p>
+        <ol>
+            <li>Log in to your account and go to the <strong>Nexus</strong> page.</li>
+            <li>Click on <strong>"Account Settings"</strong> or <strong>"Manage Account"</strong>.</li>
+            <li>Select <strong>"Delete Account"</strong> from the options.</li>
+            <li>Confirm your decision to delete the account. Please note that this action is irreversible, and all your data will be permanently removed.</li>
+        </ol>
+    </div>
+</section>
+
+<section id="understanding-pages" class="details-section">
+    <div class="details-content">
+        <span class="close-btn" onclick="hideDetails('understanding-pages')">×</span>
+        <h4>Understanding the Pages on Recycle Nexus</h4>
+        <h3>Nexus Page</h3>
+        <p>The Nexus page allows you to:</p>
+        <ul>
+            <li><strong>Update Your Public Profile:</strong> Edit your contact details, bio, and information about what you recycle or the organization you work for.</li>
+            <li><strong>Display Your Contact Details:</strong> Ensure your contact information is up-to-date and visible to others.</li>
+            <li><strong>Upload and Manage Images:</strong> Add personal images or pictures of the materials you work with. This helps in showcasing your recycling activities or business.</li>
+        </ul>
+
+        <h3>R-Learning</h3>
+        <p>The R-Learning page provides:</p>
+        <ul>
+            <li><strong>Articles and Links:</strong> Access resources that inform you about recycling, including what to recycle, reuse, and reduce.</li>
+            <li><strong>Impact Information:</strong> Learn about the positive impacts of recycling and the potential negative consequences of not practicing it.</li>
+        </ul>
+
+        <h3>R-Trade</h3>
+        <p>The R-Trade page allows you to:</p>
+        <ul>
+            <li><strong>Post Items:</strong> Share what you no longer need and choose from the following options:
+                <ul>
+                    <li><strong>Trade:</strong> Exchange materials with others.</li>
+                    <li><strong>Sell:</strong> Sell items for money.</li>
+                    <li><strong>Donate/Free:</strong> Offer items for free.</li>
+                    <li><strong>Request:</strong> Ask for specific materials and receive offers from potential sellers or donors.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Blog</h3>
+        <p>The Blog page allows users to:</p>
+        <ul>
+            <li><strong>Post Stories:</strong> Share personal stories or experiences related to recycling.</li>
+            <li><strong>React and Comment:</strong> Interact with other users' blog posts by reacting and commenting.</li>
+            <li><strong>Content Moderation:</strong> We will guide and review the content for safety and appropriateness using integrated tools.</li>
+        </ul>
+
+        <h3>R-Videos</h3>
+        <p>The R-Videos page enables users to:</p>
+        <ul>
+            <li><strong>View and Watch:</strong> Watch videos related to recycling or educational content.</li>
+            <li><strong>Video Posting:</strong> Users can see who posted the video but cannot upload their own content.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="additional-support" class="details-section">
+    <div class="details-content">
+        <span class="close-btn" onclick="hideDetails('additional-support')">×</span>
+        <h4>Additional Support</h4>
+        <p>If you have any further questions or need additional assistance, please contact our support team at <a href="mailto:support@recyclenexus.com">support@recyclenexus.com</a>.</p>
+    </div>
+</section>
+
+<script>
+function showDetails(sectionId) {
+    document.querySelectorAll('.details-section').forEach(function(section) {
+        section.style.display = 'none'; // Hide all sections
+    });
+    document.getElementById(sectionId).style.display = 'block'; // Show the selected section
+}
+
+function hideDetails(sectionId) {
+    document.getElementById(sectionId).style.display = 'none'; // Hide the selected section
+}
+</script>
+
+{% endblock %}

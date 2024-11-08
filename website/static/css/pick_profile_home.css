@@ -1,0 +1,32 @@
+/* Ensure container takes up full height */
+.container {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding-top: 50px; /* Adds space from the top */
+}
+
+.centered-row {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically within the row */
+    gap: 30px; /* Space between profile options */
+    flex-direction: row; /* Ensures items are in a row */
+}
+
+.profile-option {
+    text-align: center; /* Center content within each profile option */
+    padding: 20px; /* Adds some padding around the profile option */
+}
+
+.profile-icon {
+    color: #007bff; /* Sets the icon color */
+    margin-bottom: 10px; /* Adds space below the icon */
+}
+
+.profile-name {
+    margin-top: 10px; /* Adds space above the profile name */
+    font-size: 16px; /* Adjusts the font size */
+    color: #333; /* Sets the text color */
+}

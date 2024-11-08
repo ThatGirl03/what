@@ -1,0 +1,85 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: white; /* White background for the whole page */
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, auto); /* 2 rows */
+    gap: 20px; /* Space between cards */
+    padding: 20px; /* Space around the container */
+    max-width: 1200px; /* Max width for the grid */
+    margin: auto; /* Center the grid horizontally */
+    box-sizing: border-box;
+}
+
+.card {
+    background: #444; /* Dark card background */
+    border: 1px solid #666; /* Darker border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px; /* Increased padding */
+    text-align: center;
+    color: #fff; /* White text for contrast */
+    font-size: 1.2em; /* Larger font size */
+    min-height: 200px; /* Minimum height for the cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s;
+}
+
+.card:hover {
+    background: #555;
+}
+
+.more-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #20b2aa; /* Button color */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.details-section {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(88, 90, 89, 0.8); /* Dark overlay */
+    overflow-y: auto; /* Scroll if content is too long */
+    z-index: 1000; /* Ensure it’s above other content */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.details-content {
+    background: rgb(49, 190, 167);
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000; /* Black text for close button */
+}
+
+h2 {
+    margin: 20px 0;
+}

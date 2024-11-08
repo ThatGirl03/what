@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Sector F{% endblock %}
+
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/sectorF.css') }}"
+/>
+
+<div class="title-container">
+    <h2 class="page-title">SECTOR F</h2>
+</div>
+
+<div id="sectorF-posts">
+    {% for post in posts %}
+    <div class="sectorF-post">
+        <a href="{{ post.pdf }}" download>
+            <img src="{{ url_for('static', filename='/uploads/' + post.image) }}" alt="F Image">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Pick Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pick_profile.css') }}">
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/sectorA.css') }}"
+/>
+
+
+<div class="container">
+  
+    <div class="row">
+        <div class="col-md-6">
+            <div class="profile-option">
+                <a href="{{ url_for('auth.logout') }}" title="Logout">Logout
+                    <i class="fas fa-user fa-3x profile-icon"></i>
+                </a>
+                <p class="profile-name">Individual</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="profile-option">
+                <a href="{{ url_for('admin_auth.adm_logout') }}" title="Logout from Admin">Logout
+
+                    <i class="fas fa-user-shield fa-3x profile-icon"></i>
+                </a>
+                <p class="profile-name">Admin</p>
+            </div>
+        </div>
+    
+      
+    </div>
+</div>
+{% endblock %}

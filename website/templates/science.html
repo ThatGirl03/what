@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Science{% endblock %}
+
+{% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/cables.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/sectorA.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/raspberry.css') }}"
+/>
+
+<header>
+    <h1>SCIENCE</h1>
+</header>
+
+<!-- 2x2 Grid Layout for Cables -->
+<div class="main-content grid-layout">
+    <div class="cable">
+        <img src="{{ url_for('static', filename='images/usbcable.png') }}" alt="USB Cable">
+        <h2>USB Cable</h2>
+        <p>USB cables are used to connect computers and other devices for data transfer and charging. They come in various types such as USB-A, USB-B, USB-C, and micro-USB.</p>
+    </div>
+
+    <div class="cable">
+        <img src="{{ url_for('static', filename='images/hdmi.png') }}" alt="HDMI Cable">
+        <h2>HDMI Cable</h2>
+        <p>HDMI cables transmit high-definition video and audio between devices such as computers, TVs, and gaming consoles. They support high-quality resolution and sound.</p>
+    </div>
+
+    <div class="cable">
+        <img src="{{ url_for('static', filename='images/ethernet.png') }}" alt="Ethernet Cable">
+        <h2>Ethernet Cable</h2>
+        <p>Ethernet cables are used for wired network connections. They connect devices to a network router or switch for reliable and high-speed internet access.</p>
+    </div>
+
+    <div class="cable">
+        <img src="{{ url_for('static', filename='images/jumperwire.png') }}" alt="Jumper Wires">
+        <h2>Jumper Wires</h2>
+        <p>Jumper wires are used in electronics projects for connecting different components on a breadboard. They are available in various lengths and types (male-to-male, female-to-female, etc.).</p>
+    </div>
+</div>
+
+<div class="learn-more-container">
+    <section class="learn-more">
+        <h2>Learn More</h2>
+        <p>Understanding different types of cables is essential for any electronics or computing project. Explore the world of connectivity and enhance your project experience.</p>
+        <ul>
+            <li><a href="https://www.cablestogo.com/">Cables To Go - Cable Solutions</a></li>
+            <li><a href="https://www.monoprice.com/">Monoprice - Affordable Cables</a></li>
+            <li><a href="https://www.amazon.com/">Amazon - Electronics and Accessories</a></li>
+        </ul>
+    </section>
+</div>
+
+<div class="navigation-buttons">
+    <a href="base.html">Home</a>
+</div>
+
+{% endblock %}

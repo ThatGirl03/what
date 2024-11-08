@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Numbers{% endblock %}
+
+{% block content %}
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/sectorA.css') }}"
+/>
+
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='css/video.css') }}"
+/>
+
+<div class="title-container">
+    <h2 class="page-title">Numbers</h2>
+</div>
+
+
+<div class="carousel-container">
+    <div class="carousel">
+        <!-- Video 1 -->
+        <div class="carousel-item active">
+            <video width="100%" controls>
+                <source src="{{ url_for('static', filename='videos/') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Introduction to Software Engineering</p>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="carousel-item">
+            <video width="100%" controls>
+                <source src="{{ url_for('static', filename='videos/') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Advanced Topics in Software Engineering</p>
+        </div>
+
+        <!-- Add more videos here -->
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-nav prev" onclick="prevVideo()">❮</button>
+    <button class="carousel-nav next" onclick="nextVideo()">❯</button>
+</div>
+
+{% endblock %}
+
+<!-- Add JavaScript for carousel functionality -->
+{% block scripts %}
+<script>
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.carousel-item');
+
+    function showVideo(index) {
+        items.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextVideo() {
+        currentIndex = (currentIndex + 1) % items.length;
+        showVideo(currentIndex);
+    }
+
+    function prevVideo() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showVideo(currentIndex);
+    }
+</script>
+{% endblock %}

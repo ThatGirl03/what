@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Network Engineering{% endblock %}
+
+{% block content %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/SECTORb.css') }}"
+/>
+
+<div class="title-container">
+    <h2 class="page-title">Sector B</h2>
+</div>
+
+<div id="sectorB-posts">
+    {% for post in posts %}
+    <div class="B-post">
+        <a href="{{ post.pdf }}" download>
+            <img src="{{ url_for('static', filename='uploads/' + post.image) }}" alt="Sector Image">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,7 +1,8 @@
-requests
-bs4
+
 flask
 flask_login
 python-dotenv=1.0.1
 firebase-admin
+requests
+bs4
 gunicorn

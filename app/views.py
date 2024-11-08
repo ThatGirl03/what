@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 from models import MemoPosts, NetworkPosts, Posts, QuestionPosts
 from firebase_config import db  # Firebase config file for Firestore instance
-from google.cloud import firestore
+from google.cloud import firestore, storage
 
 
 views = Blueprint('views', __name__)
@@ -127,6 +127,7 @@ def create_post():
         db.collection('posts').add(post_data)
         flash('Post created successfully!', category='success')
         return redirect(url_for('views.home'))
+    
 
 # SECTOR A
 @views.route('/manage_sectorA', methods=['GET', 'POST'])
@@ -135,12 +136,11 @@ def manage_sectorA():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save the uploaded image
-        image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], secure_filename(image_file.filename))
-        image_file.save(image_path)
+        # Save image to Firebase Storage
+        image_url = save_image_to_firebase(image_file)
 
         # Save the post in Firestore
-        new_post = Posts(image=image_file.filename, pdf=pdf_link, date_created=datetime.now())
+        new_post = Posts(image=image_url, pdf=pdf_link, date_created=datetime.now())
         new_post.save_to_firestore()  # Save the post to Firestore
 
         return redirect(url_for('views.manage_sectorA'))
@@ -160,13 +160,12 @@ def sectorA():
 def delete_post(post_id):
     post = Posts.get_by_id(post_id)
     if post and post.image:
-        image_path = os.path.join(current_app.root_path, 'static', 'uploads', post.image)
-        if os.path.exists(image_path):  # Check if the image file exists
-            os.remove(image_path)  # Remove the image file
+        # Delete image from Firebase Storage
+        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
+        blob.delete()
     Posts.delete_from_firestore(post_id)  # Delete the post in Firestore
     flash('Post deleted successfully!', 'success')
     return redirect(url_for('views.manage_sectorA'))
-
 
 @views.route('/edit/<post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
@@ -177,13 +176,12 @@ def edit_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-                post.image = filename
+                post.image = save_image_to_firebase(file)
         post.save_to_firestore()  # Save changes to Firestore
         flash('Post updated successfully!', 'success')
         return redirect(url_for('views.manage_sectorA'))
     return render_template('edit_post.html', post=post)
+
 
 # SECTOR B
 @views.route('/manage_sectorB', methods=['GET', 'POST'])
@@ -192,16 +190,11 @@ def manage_sectorB():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save uploaded image
-        if image_file:
-            image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], secure_filename(image_file.filename))
-            image_file.save(image_path)
-            image_filename = image_file.filename
-        else:
-            image_filename = None
+        # Save image to Firebase Storage
+        image_url = save_image_to_firebase(image_file)
 
         # Save the new post in Firestore
-        new_post = NetworkPosts(image=image_filename, pdf=pdf_link)
+        new_post = NetworkPosts(image=image_url, pdf=pdf_link)
         new_post.save_to_firestore()
 
         flash('New Sector B post created!', 'success')
@@ -221,9 +214,9 @@ def sectorB():
 def delete_sectorB_post(post_id):
     post = NetworkPosts.get_by_id(post_id)
     if post and post.image:
-        image_path = os.path.join(current_app.config['UPLOAD_FOLDER'], post.image)
-        if os.path.exists(image_path):
-            os.remove(image_path)  # Remove the image file if it exists
+        # Delete image from Firebase Storage
+        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
+        blob.delete()
     NetworkPosts.delete_from_firestore(post_id)
     flash('Sector B post deleted successfully!', 'success')
     return redirect(url_for('views.manage_sectorB'))
@@ -237,9 +230,7 @@ def edit_sectorB_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-                post.image = filename
+                post.image = save_image_to_firebase(file)
         post.save_to_firestore()
         flash('Sector B post updated successfully!', 'success')
         return redirect(url_for('views.manage_sectorB'))
@@ -294,29 +285,30 @@ def nex():
 def nexus():
     return render_template('nexus.html')
 
-UPLOAD_FOLDER = os.path.join('static', 'uploads')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-def save_image_locally(image_file):
+# Function to save image to Firebase Storage
+def save_image_to_firebase(image_file):
     if image_file:
         filename = secure_filename(image_file.filename)
-        image_path = os.path.join(UPLOAD_FOLDER, filename)
-        image_file.save(image_path)
-        return filename
+        blob = storage.bucket().blob(f'uploads/{filename}')
+        blob.upload_from_file(image_file)
+        blob.make_public()  # Make the file publicly accessible
+        return blob.public_url
     return None
 
+
 # QUESTIONS
+
 @views.route('/manage_questions', methods=['GET', 'POST'])
 def manage_questions():
     if request.method == 'POST':
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image locally
-        image_filename = save_image_locally(image_file)
+        # Save image to Firebase Storage
+        image_url = save_image_to_firebase(image_file)
 
         # Save post in Firestore
-        new_post = QuestionPosts(image=image_filename, pdf=pdf_link, date_created=datetime.now())
+        new_post = QuestionPosts(image=image_url, pdf=pdf_link, date_created=datetime.now())
         new_post.save_to_firestore()
 
         flash('New Question post created!', 'success')
@@ -335,9 +327,9 @@ def questions():
 def delete_question_post(post_id):
     post = QuestionPosts.get_by_id(post_id)
     if post and post.image:
-        image_path = os.path.join(UPLOAD_FOLDER, post.image)
-        if os.path.exists(image_path):
-            os.remove(image_path)
+        # Delete image from Firebase Storage
+        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
+        blob.delete()
 
     QuestionPosts.delete_from_firestore(post_id)
     flash('Question post deleted successfully!', 'success')
@@ -352,7 +344,7 @@ def edit_question_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_locally(file)
+                post.image = save_image_to_firebase(file)
         post.save_to_firestore()
         flash('Question post updated successfully!', 'success')
         return redirect(url_for('views.manage_questions'))
@@ -366,10 +358,10 @@ def manage_memo():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image locally
-        image_filename = save_image_locally(image_file)
+        # Save image to Firebase Storage
+        image_url = save_image_to_firebase(image_file)
 
-        new_post = MemoPosts(image=image_filename, pdf=pdf_link, date_created=datetime.now())
+        new_post = MemoPosts(image=image_url, pdf=pdf_link, date_created=datetime.now())
         new_post.save_to_firestore()
 
         flash('New Memo post created!', 'success')
@@ -388,9 +380,9 @@ def memo():
 def delete_memo_post(post_id):
     post = MemoPosts.get_by_id(post_id)
     if post and post.image:
-        image_path = os.path.join(UPLOAD_FOLDER, post.image)
-        if os.path.exists(image_path):
-            os.remove(image_path)
+        # Delete image from Firebase Storage
+        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
+        blob.delete()
 
     MemoPosts.delete_from_firestore(post_id)
     flash('Memo post deleted successfully!', 'success')
@@ -405,7 +397,7 @@ def edit_memo_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_locally(file)
+                post.image = save_image_to_firebase(file)
         post.save_to_firestore()
         flash('Memo post updated successfully!', 'success')
         return redirect(url_for('views.manage_memo'))

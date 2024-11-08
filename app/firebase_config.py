@@ -8,11 +8,8 @@ from firebase_admin import credentials, firestore
 firebase_credentials_json = os.getenv("FIREBASE_CREDENTIALS")
 
 if firebase_credentials_json:
-    with open(firebase_credentials_json, "r") as f:
-        # Load the JSON string into a dictionary
-        firebase_credentials = json.load(f)
-
-    cred = credentials.Certificate(firebase_credentials)
+    creds = json.loads(firebase_credentials_json)
+    cred = credentials.Certificate(creds)
     firebase_admin.initialize_app(cred)
 
 else:

@@ -4,7 +4,7 @@ import os
 from flask import Flask
 from flask_login import LoginManager, current_user
 from dotenv import load_dotenv
-from website.models import User
+from models import User
 from .firebase_config import db  # Import the Firestore db from firebase_config
 
 # Load environment variables from the .env file

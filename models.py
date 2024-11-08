@@ -1,11 +1,11 @@
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from website.firebase_config import db  # Import Firestore instance from firebase_config
+from firebase_config import db  # Import Firestore instance from firebase_config
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from website.firebase_config import db  # Import Firestore instance from firebase_config
+from firebase_config import db  # Import Firestore instance from firebase_config
 
 class User(UserMixin):
     def __init__(self, firstname, lastname, email, password, profile=None, hashed=False, user_id=None):

@@ -4,7 +4,7 @@ import os
 from flask import Blueprint, app, current_app, flash, jsonify, redirect, render_template, request, url_for, abort
 from flask_login import  current_user, login_required
 from werkzeug.utils import secure_filename
-from website.models import UserProfile, tradepost, Posts
+from models import UserProfile, tradepost, Posts
 from . import db
 
 

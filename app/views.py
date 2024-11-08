@@ -3,8 +3,8 @@ from flask import Blueprint, current_app, flash, jsonify, redirect, render_templ
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 from datetime import datetime
-from .models import MemoPosts, NetworkPosts, Posts, QuestionPosts
-from .firebase_config import db  # Firebase config file for Firestore instance
+from models import MemoPosts, NetworkPosts, Posts, QuestionPosts
+from firebase_config import db  # Firebase config file for Firestore instance
 from google.cloud import firestore
 
 
@@ -17,8 +17,8 @@ ADMIN_EMAIL = 'admin@easylink.ac.za'
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
 
-
 @views.route('/', methods=['GET', 'POST'])
+@views.route('/home', methods=['GET', 'POST'])
 def home():
     name = "Ayanda!"
     return render_template("home.html", Hello='Welcome to EasyLink ' + name)

@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from werkzeug.security import check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
-from .firebase_config import db  # Import Firestore instance from firebase_config
-from .models import Admin
+
+from firebase_config import db 
+from models import Admin
 
 admin_auth = Blueprint('admin_auth', __name__)
 

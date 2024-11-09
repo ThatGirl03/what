@@ -130,14 +130,18 @@ def create_post():
     
 
 # SECTOR A
+import requests
+import os
+from flask import request, flash, redirect, url_for, render_template
+
 @views.route('/manage_sectorA', methods=['GET', 'POST'])
 def manage_sectorA():
     if request.method == 'POST':
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image to Firebase Storage
-        image_url = save_image_to_firebase(image_file)
+        # Save image to ImgBB Storage
+        image_url = save_image_to_imgbb(image_file)
 
         # Save the post in Firestore
         new_post = Posts(image=image_url, pdf=pdf_link, date_created=datetime.now())
@@ -160,9 +164,8 @@ def sectorA():
 def delete_post(post_id):
     post = Posts.get_by_id(post_id)
     if post and post.image:
-        # Delete image from Firebase Storage
-        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
-        blob.delete()
+        # Delete image from ImgBB Storage (currently there's no direct API for deleting images, typically)
+        flash('Image cannot be deleted from ImgBB directly!', 'warning')
     Posts.delete_from_firestore(post_id)  # Delete the post in Firestore
     flash('Post deleted successfully!', 'success')
     return redirect(url_for('views.manage_sectorA'))
@@ -176,12 +179,11 @@ def edit_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_to_firebase(file)
+                post.image = save_image_to_imgbb(file)
         post.save_to_firestore()  # Save changes to Firestore
         flash('Post updated successfully!', 'success')
         return redirect(url_for('views.manage_sectorA'))
     return render_template('edit_post.html', post=post)
-
 
 # SECTOR B
 @views.route('/manage_sectorB', methods=['GET', 'POST'])
@@ -190,8 +192,8 @@ def manage_sectorB():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image to Firebase Storage
-        image_url = save_image_to_firebase(image_file)
+        # Save image to ImgBB Storage
+        image_url = save_image_to_imgbb(image_file)
 
         # Save the new post in Firestore
         new_post = NetworkPosts(image=image_url, pdf=pdf_link)
@@ -214,9 +216,8 @@ def sectorB():
 def delete_sectorB_post(post_id):
     post = NetworkPosts.get_by_id(post_id)
     if post and post.image:
-        # Delete image from Firebase Storage
-        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
-        blob.delete()
+        # Delete image from ImgBB Storage (currently there's no direct API for deleting images, typically)
+        flash('Image cannot be deleted from ImgBB directly!', 'warning')
     NetworkPosts.delete_from_firestore(post_id)
     flash('Sector B post deleted successfully!', 'success')
     return redirect(url_for('views.manage_sectorB'))
@@ -230,11 +231,34 @@ def edit_sectorB_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_to_firebase(file)
+                post.image = save_image_to_imgbb(file)
         post.save_to_firestore()
         flash('Sector B post updated successfully!', 'success')
         return redirect(url_for('views.manage_sectorB'))
     return render_template('edit_sectorB_post.html', post=post)
+
+# Function to save images to ImgBB
+def save_image_to_imgbb(image_file):
+    imgbb_api_key = os.getenv('IMGBB_API_KEY')
+    url = "https://api.imgbb.com/1/upload"
+
+    payload = {
+        "key": imgbb_api_key,
+        "image": image_file.read(),
+    }
+    headers = {
+        'Content-Type': 'multipart/form-data'
+    }
+
+    response = requests.post(url, data=payload)
+
+    if response.status_code == 200:
+        data = response.json()
+        return data['data']['url']
+    else:
+        flash('Failed to upload image to ImgBB', 'danger')
+        return None
+
 
 
 @views.route('/manage_sectorC')
@@ -280,19 +304,32 @@ def sectorG():
 @views.route('/nex')
 def nex():
     return render_template('nex.html')
-
 @views.route('/nexus')
 def nexus():
     return render_template('nexus.html')
 
-# Function to save image to Firebase Storage
-def save_image_to_firebase(image_file):
+# Function to save image to ImgBB Storage
+def save_image_to_imgbb(image_file):
     if image_file:
-        filename = secure_filename(image_file.filename)
-        blob = storage.bucket().blob(f'uploads/{filename}')
-        blob.upload_from_file(image_file)
-        blob.make_public()  # Make the file publicly accessible
-        return blob.public_url
+        imgbb_api_key = os.getenv('IMGBB_API_KEY')
+        url = "https://api.imgbb.com/1/upload"
+
+        payload = {
+            "key": imgbb_api_key,
+            "image": image_file.read(),
+        }
+        headers = {
+            'Content-Type': 'multipart/form-data'
+        }
+
+        response = requests.post(url, data=payload)
+
+        if response.status_code == 200:
+            data = response.json()
+            return data['data']['url']
+        else:
+            flash('Failed to upload image to ImgBB', 'danger')
+            return None
     return None
 
 
@@ -304,8 +341,8 @@ def manage_questions():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image to Firebase Storage
-        image_url = save_image_to_firebase(image_file)
+        # Save image to ImgBB Storage
+        image_url = save_image_to_imgbb(image_file)
 
         # Save post in Firestore
         new_post = QuestionPosts(image=image_url, pdf=pdf_link, date_created=datetime.now())
@@ -327,9 +364,8 @@ def questions():
 def delete_question_post(post_id):
     post = QuestionPosts.get_by_id(post_id)
     if post and post.image:
-        # Delete image from Firebase Storage
-        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
-        blob.delete()
+        # ImgBB does not provide an API to delete uploaded images directly
+        flash('Image cannot be deleted from ImgBB directly!', 'warning')
 
     QuestionPosts.delete_from_firestore(post_id)
     flash('Question post deleted successfully!', 'success')
@@ -344,7 +380,7 @@ def edit_question_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_to_firebase(file)
+                post.image = save_image_to_imgbb(file)
         post.save_to_firestore()
         flash('Question post updated successfully!', 'success')
         return redirect(url_for('views.manage_questions'))
@@ -358,8 +394,8 @@ def manage_memo():
         image_file = request.files['image']
         pdf_link = request.form['pdf']
 
-        # Save image to Firebase Storage
-        image_url = save_image_to_firebase(image_file)
+        # Save image to ImgBB Storage
+        image_url = save_image_to_imgbb(image_file)
 
         new_post = MemoPosts(image=image_url, pdf=pdf_link, date_created=datetime.now())
         new_post.save_to_firestore()
@@ -380,9 +416,8 @@ def memo():
 def delete_memo_post(post_id):
     post = MemoPosts.get_by_id(post_id)
     if post and post.image:
-        # Delete image from Firebase Storage
-        blob = storage.bucket().blob(f'uploads/{post.image.split("/")[-1]}')
-        blob.delete()
+        # ImgBB does not provide an API to delete uploaded images directly
+        flash('Image cannot be deleted from ImgBB directly!', 'warning')
 
     MemoPosts.delete_from_firestore(post_id)
     flash('Memo post deleted successfully!', 'success')
@@ -397,12 +432,13 @@ def edit_memo_post(post_id):
         if 'image' in request.files:
             file = request.files['image']
             if file.filename:
-                post.image = save_image_to_firebase(file)
+                post.image = save_image_to_imgbb(file)
         post.save_to_firestore()
         flash('Memo post updated successfully!', 'success')
         return redirect(url_for('views.manage_memo'))
 
     return render_template('edit_memo_post.html', post=post)
+
 
 
 @views.route('/engineer')

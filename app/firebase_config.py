@@ -7,13 +7,14 @@ from firebase_admin import credentials, firestore, storage
 
 # Get the Firebase credentials from environment variables
 firebase_credentials = os.getenv("FIREBASE_CREDENTIALS")
+storage_bucket = os.getenv('FIREBASE_STORAGE_BUCKET')
 
 if firebase_credentials:
     decoded_json = base64.b64decode(firebase_credentials.encode("ascii")).decode("ascii")
     creds = json.loads(decoded_json)
     cred = credentials.Certificate(creds)
     firebase_admin.initialize_app(cred, {
-        'storageBucket': os.getenv('FIREBASE_STORAGE_BUCKET')
+        'storageBucket': storage_bucket
     })
 
 else:
